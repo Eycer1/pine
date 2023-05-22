@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
-      autofocus: true,
+      autofocus: false,
       decoration: InputDecoration(
           hintText: 'Email',
           contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
