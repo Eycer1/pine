@@ -13,9 +13,8 @@ class PineApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Pine Application',
-        // routes: routes,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.lightBlue, fontFamily: 'Nunito'),
-        home: const LoginPage());
+        routes: routes);
   }
 }

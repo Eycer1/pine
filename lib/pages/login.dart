@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  static String tag = 'login';
   const LoginPage({super.key});
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _obscureText = true;
+
+  // Toggles the password show status
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -20,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
-      autofocus: false,
+      autofocus: true,
       decoration: InputDecoration(
           hintText: 'Email',
           contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -30,9 +37,16 @@ class _LoginPageState extends State<LoginPage> {
 
     final password = TextFormField(
       autofocus: false,
-      obscureText: true,
+      obscureText: _obscureText,
       decoration: InputDecoration(
           hintText: 'Password',
+          suffixIcon: IconButton(
+            icon: Icon(
+              (_obscureText ? Icons.visibility_off : Icons.visibility),
+              color: Theme.of(context).primaryColorDark,
+            ),
+            onPressed: () => _toggle(),
+          ),
           contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
@@ -47,8 +61,9 @@ class _LoginPageState extends State<LoginPage> {
           elevation: 5.0,
           child: MaterialButton(
             height: 42.0,
-            onPressed: () {},
-            // color: Colors.lightBlueAccent,
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed('/home');
+            },
             child: const Text(
               'Log In',
               style: TextStyle(color: Colors.white),
